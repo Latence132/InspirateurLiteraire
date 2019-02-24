@@ -15,8 +15,8 @@ function phraseBindVerbe($sql,$bddTextes,$verbeTemp){
         $sql
     );
     mysqli_stmt_bind_param($requete, "i", $verbeTemp);
-    mysqli_stmt_bind_result($requete, $donnees['texte'], $donnees['titre'], $donnees['nom']);
     mysqli_stmt_execute($requete);
+    mysqli_stmt_bind_result($requete, $donnees['texte'], $donnees['titre'], $donnees['nom']);
     $requete->store_result();//Transfers a result set from a prepared statement
     $count=$requete->num_rows;
     if ($count >= 1) {
