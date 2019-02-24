@@ -89,7 +89,7 @@ $(document).ready(function() {
       success: function(result) {
         $("#spinner").addClass("invisible");
         console.log("debut success ", result);
-       $('<ul class="list-group "><li class="list-group-item" style="background-color: rgb(231,231,231);"><div class="row"><div class="col-xs-8 col-md-8">Texte</div><div class="col-xs-2 col-md-2">Ouvrage</div><div class="col-xs-2 col-md-2">Auteur</div></div></li>' + result + "</ul>" ).appendTo("#idResultat");
+       $('<ul class="list-group "><li class="list-group-item" style="background-color: rgb(231,231,231);"><div class="row"><div class="col-xs-7 col-md-7">Texte</div><div class="col-xs-2 col-md-2">Ouvrage</div><div class="col-xs-2 col-md-2">Auteur</div><div class="col-xs-1 col-md-1">N°</div></div></li>' + result + "</ul>" ).appendTo("#idResultat");
       },
       
 

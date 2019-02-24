@@ -19,9 +19,11 @@ function phraseBindVerbe($sql,$bddTextes,$verbeTemp){
     mysqli_stmt_bind_result($requete, $donnees['texte'], $donnees['titre'], $donnees['nom']);
     $requete->store_result();//Transfers a result set from a prepared statement
     $count=$requete->num_rows;
+    $count2 = 1;
     if ($count >= 1) {
         while (mysqli_stmt_fetch($requete)) {
-            echo utf8_encode('<li class="list-group-item"><div class="row"><div class="col-xs-8 col-md-8">' . $donnees['texte']. '</div><div class="col-xs-2 col-md-2">' . $donnees['titre'] . '</div><div class="col-xs-2 col-md-2">' . $donnees['nom'] .'</div></div></li>') ;
+            echo utf8_encode('<li class="list-group-item"><div class="row"><div class="col-xs-7 col-md-7">'. $donnees['texte']. '</div><div class="col-xs-2 col-md-2">' . $donnees['titre'] . '</div><div class="col-xs-2 col-md-2">' . $donnees['nom'] .'</div><div class="col-xs-1 col-md-1">' . $count2 .'</div></div></li>') ;
+            $count2 +=1;
         }
     } else {
         echo utf8_encode('<li class="list-group-item">Pas de resultats</li>') ;
@@ -39,9 +41,11 @@ function phraseBindAuthorVerbe($sql,$bddTextes,$auteurTemp,$verbeTemp){
     mysqli_stmt_bind_result($requete, $donnees['texte'], $donnees['titre'], $donnees['nom']);
     $requete->store_result();//Transfers a result set from a prepared statement
     $count=$requete->num_rows;
+    $count2 = 1;
     if ($count >= 1) {
         while (mysqli_stmt_fetch($requete)) {
-            echo utf8_encode('<li class="list-group-item"><div class="row"><div class="col-xs-8 col-md-8">' . $donnees['texte']. '</div><div class="col-xs-2 col-md-2">' . $donnees['titre'] . '</div><div class="col-xs-2 col-md-2">' . $donnees['nom'] .'</div></div></li>') ;
+            echo utf8_encode('<li class="list-group-item"><div class="row"><div class="col-xs-7 col-md-7">' . $donnees['texte']. '</div><div class="col-xs-2 col-md-2">' . $donnees['titre'] . '</div><div class="col-xs-2 col-md-2">' . $donnees['nom'] .'</div><div class="col-xs-1 col-md-1">' . $count2 .'</div></div></li>') ;
+            $count2 +=1;
         }
     } else {
         echo utf8_encode('<li class="list-group-item">Pas de resultats</li>') ;
