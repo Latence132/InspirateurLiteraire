@@ -21,7 +21,7 @@ function phraseBindVerbe($sql,$bddTextes,$verbeTemp){
     $count=$requete->num_rows;
     if ($count >= 1) {
         while (mysqli_stmt_fetch($requete)) {
-            echo utf8_encode('<li class="list-group-item row"><div class="row"><div class="col-xs-8 col-md-8">' . $donnees['texte']. '</div><div class="col-xs-2 col-md-2">' . $donnees['titre'] . '</div><div class="col-xs-2 col-md-2"><div class="col-xs-2 col-md-2">' . $donnees['nom'] .'</div></div></li>') ;
+            echo utf8_encode('<li class="list-group-item"><div class="row"><div class="col-xs-8 col-md-8">' . $donnees['texte']. '</div><div class="col-xs-2 col-md-2">' . $donnees['titre'] . '</div><div class="col-xs-2 col-md-2">' . $donnees['nom'] .'</div></div></li>') ;
         }
     } else {
         echo utf8_encode('<li class="list-group-item">Pas de resultats</li>') ;
@@ -41,7 +41,7 @@ function phraseBindAuthorVerbe($sql,$bddTextes,$auteurTemp,$verbeTemp){
     $count=$requete->num_rows;
     if ($count >= 1) {
         while (mysqli_stmt_fetch($requete)) {
-            echo utf8_encode('<li class="list-group-item"><div class="row"><div class="col-xs-8 col-md-8">' . $donnees['texte']. '</div><div class="col-xs-2 col-md-2">' . $donnees['titre'] . '</div><div class="col-xs-2 col-md-2"><div class="col-xs-2 col-md-2">' . $donnees['nom'] .'</div></div></li>') ;
+            echo utf8_encode('<li class="list-group-item"><div class="row"><div class="col-xs-8 col-md-8">' . $donnees['texte']. '</div><div class="col-xs-2 col-md-2">' . $donnees['titre'] . '</div><div class="col-xs-2 col-md-2">' . $donnees['nom'] .'</div></div></li>') ;
         }
     } else {
         echo utf8_encode('<li class="list-group-item">Pas de resultats</li>') ;
