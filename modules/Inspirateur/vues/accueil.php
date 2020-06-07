@@ -19,6 +19,28 @@
       #idVerbeAjax, #sujetAjax, #objetAjax, #sujet, #objet  {
         display: none;
       }
+      html {
+        font-size: 1rem;
+      }
+      h1, .h1 { font-size: 2rem; }
+
+    @include media-breakpoint-up(sm) {
+      html {
+        font-size: 0.7rem;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      html {
+        font-size: 1rem;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      html {
+        font-size: 1rem;
+      }
+    }
     </style>
 
     <script type="text/javascript">
@@ -30,66 +52,19 @@
             url: "modules/Inspirateur/modele/Verbes.php",
             dataType: "json",
             data: {
-              term: request.term
+              term: request.term.toLowerCase()
             },
             success: function (data) {
               response(data);
-              //console.log( "ajax success : " + data);
             }
           });
         },
         minLength: 2,
         select: function (event, ui) {
-          //console.log("Selected: " + ui.item.value  + " id : " + ui.item.id);
           $("#idVerbeAjax").val(ui.item.id);
         },
       });
 
-      //autocomplete retriving sujet
-      $("#sujet").autocomplete({
-        source: function (request, response) {
-          $.ajax({
-            url: "modules/Inspirateur/modele/Sujet.php",
-            dataType: "json",
-            data: {
-              term: request.term
-            },
-            success: function (data) {
-              response(data);
-              //console.log(data);
-            }
-          });
-        },
-        minLength: 2,
-        select: function (event, ui) {
-          //log(ui.item.value);
-          //console.log("Selected: " + ui.item.value + " id : " + ui.item.id);
-          $("#sujetAjax").val(ui.item.id);
-        }
-      });
-
-      //autocomplete retriving objet
-      $("#objet").autocomplete({
-        source: function (request, response) {
-          $.ajax({
-            url: "modules/Inspirateur/modele/Objet.php",
-            dataType: "json",
-            data: {
-              term: request.term
-            },
-            success: function (data) {
-              response(data);
-              //console.log(data);
-            }
-          });
-        },
-        minLength: 2,
-        select: function (event, ui) {
-          //log(ui.item.value);
-          //console.log("Selected: " + ui.item.value + " id : " + ui.item.id);
-          $("#objetAjax").val(ui.item.id);
-        }
-      });
     });
     </script>
     <title>Insipirateur litéraire</title>

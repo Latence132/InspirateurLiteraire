@@ -52,7 +52,18 @@ function phraseBindAuthorVerbe($sql,$bddTextes,$auteurTemp,$verbeTemp){
     }
     mysqli_stmt_close($requete);
 }
-
+function convertVerbeToId ($bddGram,$verbeTemp){
+  $sql = 'SELECT DISTINCT a.id FROM mots a where texte = ?';
+    $requete = mysqli_prepare( 
+      $bddGram,
+      $sql
+  );
+  mysqli_stmt_bind_param($requete, "s", $verbeTemp);
+  mysqli_stmt_execute($requete);
+  mysqli_stmt_bind_result($requete, $donnees['id']);
+  mysqli_stmt_close($requete);
+  return $donnees['id'];
+  }
 function phrasesAVSO($bddTextes,$auteurTemp, $verbeTemp,$requestTemp)
 {       switch ($requestTemp) {
     case "00":

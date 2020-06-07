@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-12">
+    <div class=" col-xs-9 col-md-9">
       <h1>Inspirateur littéraire</h1>
     </div>
   </div>
 
-  <form>
+  <form id="idForm">
     <div class="row">
       <!-- auteur -->
       <div class="col-xs-12 col-md-6">
@@ -58,12 +58,12 @@
           <div class="form-check d-inline-flex">
             <input class="form-check-input" type="radio" name="objetRadio" id="idNomCommunObjet" value="nomCommun">
             <label class="form-check-label" for="idNomCommunObjet">
-              Object nom commun
+              Nom commun
             </label>
           </div>
           <div class="form-check d-inline-flex">
             <input class="form-check-input" type="radio" name="objetRadio" id="idnoneObjet" value="NoObject">
-            <label class="form-check-label" for="idnoneObjet">Pas d'objet
+            <label class="form-check-label" for="idnoneObjet">Aucun
             </label>
           </div>
           <div class="form-check d-inline-flex">

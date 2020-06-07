@@ -14,7 +14,13 @@ if (isset($_POST['auteur'])) {
     $auteurTemp = htmlspecialchars($_POST['auteur']);
     $verbeTemp = htmlspecialchars($_POST['verbe']);
     $requestTemp = htmlspecialchars($_POST['request']);
-    $resultat = phrasesAVSO($bddTextes, $auteurTemp, $verbeTemp, $requestTemp);
+    if(is_numeric($verbeTemp)) {
+        $resultat = phrasesAVSO($bddTextes, $auteurTemp, $verbeTemp, $requestTemp);
+    } else {
+        $verbeTemp = convertVerbeToId($bddGram,$verbeTemp);
+        $resultat = phrasesAVSO($bddTextes, $auteurTemp, $verbeTemp, $requestTemp);
+    }
+    
     echo $resultat ;
 } else {
     //header('Content-type: text/html; charset=UTF-8');

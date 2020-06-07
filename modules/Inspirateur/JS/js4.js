@@ -1,61 +1,62 @@
 // A $( document ).ready() block.
-$(document).ready(function() {
-  console.log("ready 2 !!");
-  var sujet = "peuImporte";
-  var objet = "peuImporte";
+$(document).ready(function () {
+  var sujet = "2";
+  var objet = "2";
   $("#spinner").addClass("invisible");
   //init no subjectpeuImporte
-  $("#sujetAjax").val(2);
+  $("#sujetAjax").val("2");
   //choose subject autocomplete en fonction de l'auteur
-  $("#chooseSubject").click(function(e) {
+  $("#chooseSubject").click(function (e) {
     if ($("input[name=sujetRadio]:checked").val() === "nomCommun") {
-      //console.log("idNomCommunSujet! : " + $("input[name=sujetRadio]:checked").val());
       $("#sujet").val("nom commun");
-      $("#sujetAjax").val(1); // 0 chien, chat, hommes,
+      $("#sujetAjax").val("1"); // 0 chien, chat, hommes,
     } else if ($("input[name=sujetRadio]:checked").val() === "nomPronom") {
       //deactivate input pronom
-      //console.log("Pronom subject selected!");
       $("#sujet").val("pronom");
-      $("#sujetAjax").val(0); // 0 je, tu, il, nous, vous, ils
+      $("#sujetAjax").val("0"); // 0 je, tu, il, nous, vous, ils
     } else {
       //no strain on the subject
-      console.log("No subject selected!");
       //$("input[name=sujet]").prop('disabled', true);
       $("#sujet").val("peu importe");
-      $("#sujetAjax").val(2); // no subject in the request
+      $("#sujetAjax").val("2"); // no subject in the request
     }
   });
   //choose object
-  $("#chooseObject").click(function(e) {
+  $("#chooseObject").click(function (e) {
     console.log("choose objet");
     if ($("input[name=objetRadio]:checked").val() === "NoObject") {
-      //console.log("idNomCommunSujet! : " + $("input[name=sujetRadio]:checked").val());
       $("#objet").val("nom commun");
-      $("#objetAjax").val(0); // 0 pas d'objet,
+      $("#objetAjax").val("0"); // 0 pas d'objet,
     } else if ($("input[name=objetRadio]:checked").val() === "nomCommun") {
       //deactivate input pronom
-      //console.log("Pronom subject selected!");
       $("#objet").val("pas d'objet");
-      $("#objetAjax").val(1); // 0 je, tu, il, nous, vous, ils ou rien
+      $("#objetAjax").val("1"); // 0 je, tu, il, nous, vous, ils ou rien
     } else {
       //no strain on the subjectobject
       console.log("No objet selected!");
       //$("input[name=sujet]").prop('disabled', true);
       $("#objet").val("peu importe");
-      $("#objetAjax").val(2); // no subject in the request
+      $("#objetAjax").val("2"); // no subject in the request
     }
   });
   //find sentences
-  $("#idBtnRecherche").click(function(e) {
+  $("#idBtnRecherche").click(function (e) {
     e.preventDefault();
     $("#spinner").removeClass("invisible");
     // $("#spinner").addClass('visible')
     var auteur = $("#idAuteur").val();
     var verbe = $("#idVerbeAjax").val();
+
     sujet = $("#sujetAjax").val();
     objet = $("#objetAjax").val();
-    var request = sujet.toString() + objet.toString();
-    console.log("idAuteur : ", auteur,"idVerbe : ", verbe,"id sujet :" + $("#sujetAjax").val(),"request : ",request);
+    console.log('pas convertion :', $("#idVerbeAjax").val(), "devient", $("#idVerbe").val())
+    if (isNaN(verbe)) {
+      console.log('convertion :', $("#idVerbeAjax").val(), " devient", $("#idVerbe").val())
+      verbe = $("#idVerbe").val();
+    }
+
+    var request = sujet + objet;
+    console.log("idAuteur : ", auteur, "idVerbe : ", verbe, "id sujet :" + $("#sujetAjax").val(), "request : ", request);
     //Author
 
     //auteur == 999 => all authors
@@ -71,7 +72,7 @@ $(document).ready(function() {
     //object == 1 => common name, Object nom commun, object <> 0
     //object == 2 => peu importe,  no request on object
 
-  
+
 
     $.ajax({
       type: "POST",
@@ -86,21 +87,20 @@ $(document).ready(function() {
       //dataType: "json",
 
       // La trasaction s'est bien terminée
-      success: function(result) {
+      success: function (result) {
         $("#spinner").addClass("invisible");
         console.log("debut success ", result);
-       $('<ul class="list-group "><li class="list-group-item" style="background-color: rgb(231,231,231);"><div class="row"><div class="col-xs-7 col-md-7">Texte</div><div class="col-xs-2 col-md-2">Ouvrage</div><div class="col-xs-2 col-md-2">Auteur</div><div class="col-xs-1 col-md-1">N°</div></div></li>' + result + "</ul>" ).appendTo("#idResultat");
+        $('<ul class="list-group "><li class="list-group-item" style="background-color: rgb(231,231,231);"><div class="row"><div class="col-xs-7 col-md-7">Texte</div><div class="col-xs-2 col-md-2">Ouvrage</div><div class="col-xs-2 col-md-2">Auteur</div><div class="col-xs-1 col-md-1">N°</div></div></li>' + result + "</ul>").appendTo("#idResultat");
       },
-      
 
-      error: function(jqxhr, typeErreur, objJSONErreur) {
+
+      error: function (jqxhr, typeErreur, objJSONErreur) {
         alert("Type erreur : " + typeErreur + " => " + objJSONErreur);
       }
     });
   });
   //Réinitialiser
-  $("#BtnReiniti").click(function(e) {
+  $("#BtnReiniti").click(function (e) {
     $(".list-group-item").empty();
-    console.log("réinitialiser");
   });
 });
